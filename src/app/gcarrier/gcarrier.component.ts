@@ -14,7 +14,7 @@ export class GcarrierComponent implements OnInit {
   urls = [];
   Vurls = [];
   checked = false;
-  isLinear = false;
+  isLinear = true;
   percent: string;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
