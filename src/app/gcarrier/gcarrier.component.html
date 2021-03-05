@@ -1,0 +1,1205 @@
+<p style="text-align: center;"><b>Please answer all questions truthful and best to your knowledge. All answers will be verified at medical screening. If you don't know any answers, please select N/A. <br> The whole process will take up to 30-45 minutes to complete. Please be patient and finish your application, a Great Journey awaits you!</b></p>
+<mat-card class="card">
+  <mat-card-content>
+    <section class="progress-section">
+      <mat-progress-bar
+        class="progress" mode="determinate"
+        value="20">
+      </mat-progress-bar>20%
+    </section>
+  </mat-card-content>
+</mat-card>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+  <form [formGroup]="firstFormGroup">
+    <ng-template matStepLabel>Pregnancy & delivery</ng-template>
+    <table id="table">
+      <tr>
+        <th>Pregnancy History: Please list the most recent one on top, others subsequently follow</th>
+        <th>Delivery Date Or Pregnancy Termination Date (e.g.: July 2020)</th>
+        <th>Delivery Methods</th>
+        <th>Outcome</th>
+        <th>Surrogacy Pregnancy</th>
+        <th>Pregnancy Weeks</th>
+        <th>Newborn Weight At Birth</th>
+        <th>Pregnancy Medical Conditions</th>
+        <th>Severe Pregnancy Complications</th>
+        <th>Treatment Applied</th>
+        <th>Treatment Result</th>
+      </tr>
+    </table>
+    <div [formGroup]="historyForm">
+      <table id="tableFirst" formGroupName="list_historys">
+        <ng-container *ngIf="historyForm.controls.list_historys!=null">
+          <div *ngFor="let list_history of historyForm.controls.list_historys.controls; let i=index" [formGroupName]="i">
+            <tr>
+              <td>
+                <mat-select formControlName="history" required>
+                  <mat-option value="1">1</mat-option>
+                  <mat-option value="2">2</mat-option>
+                  <mat-option value="3">3</mat-option>
+                  <mat-option value="4">4</mat-option>
+                  <mat-option value="5">5</mat-option>
+                  <mat-option value="6">6</mat-option>
+                </mat-select>
+              </td>
+              <td><input matInput formControlName="delivery_date" maxlength="500" required></td>
+              <td>
+                <mat-select formControlName="delivery_method" required>
+                  <mat-option value="C_Section">C-Section</mat-option>
+                  <mat-option value="Virginal">Virginal</mat-option>
+                </mat-select>
+              </td>
+              <td>
+                <mat-select formControlName="outcome" required>
+                  <mat-option value="Singleton Delivery">Singleton Delivery</mat-option>
+                  <mat-option value="Twins Or More Delivery">Twins Or More Delivery</mat-option>
+                  <mat-option value="Miscarriage">Miscarriage</mat-option>
+                  <mat-option value="Elective Abortion">Elective Abortion</mat-option>
+                  <mat-option value="Still Birth">Still Birth</mat-option>
+                </mat-select>
+              </td>
+              <td>
+                <mat-select formControlName="Surrogacy_Pregnancy" required>
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </td>
+              <td><input matInput formControlName="Pregnancy_Weeks" maxlength="500" required></td>
+              <td><input matInput formControlName="Newborn_weight" maxlength="500" required></td>
+            <td>
+              <mat-select formControlName="Pregnancy_Medical" required>
+                <mat-option value="N/A">N/A</mat-option>
+                <mat-option value="Diabetes">Diabetes</mat-option>
+                <mat-option value="Heart Problem">Heart Problem</mat-option>
+                <mat-option value="High Blood Pressure">High Blood Pressure</mat-option>
+                <mat-option value="Ovarian Cysts">Ovarian Cysts</mat-option>
+                <mat-option value="Migraine Headaches">Migraine Headaches</mat-option>
+                <mat-option value="Asthmatic Symptoms">Asthmatic Symptoms</mat-option>
+                <mat-option value="Uterine Fibroids">Uterine Fibroids</mat-option>
+                <mat-option value="Thyroid Problem">Thyroid Problem</mat-option>
+                <mat-option value="Others, please explain in the box below">Others, please explain in the box below</mat-option>
+              </mat-select>
+            </td>
+            <td>
+              <mat-select formControlName="Severe_Pregnancy" required>
+                <mat-option value="N/A">N/A</mat-option>
+                <mat-option value="Intrauterine Growth Restriction">Intrauterine Growth Restriction</mat-option>
+                <mat-option value="Eclampsia">Eclampsia</mat-option>
+                <mat-option value="Pre-eclampsia">Pre-eclampsia</mat-option>
+              </mat-select>
+            </td>
+            <td>
+              <mat-select formControlName="Treatment_applied" required>
+                <mat-option value="Medication, please specify">Medication, please specify</mat-option>
+                <mat-option value="Procedure, please specify">Procedure, please specify</mat-option>
+              </mat-select>
+            </td>
+            <td>
+              <mat-select formControlName="Treatment_Result" required>
+                <mat-option value="Cured">Cured</mat-option>
+                <mat-option value="In Progress">In Progress</mat-option>
+                <mat-option value="Others, please explain in the box below">Others, please explain in the box below</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          </div>
+        </ng-container>
+      </table>
+    </div>
+    <br>
+    <button mat-raised-button color="warn" (click)="addNewRow()">Add More <mat-icon>add_box</mat-icon></button>
+    <br><br>
+    <mat-label>Please write your explanation as needed: </mat-label><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Please write your explanation as needed</mat-label>
+      <textarea matInput formControlName="explain" maxlength="5000"></textarea>
+    </mat-form-field>
+  </form>
+  <br>
+  <div style="text-align: center;" class="button-row">
+    <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+    <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+  </div>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Substance User Disclosure</ng-template>
+      <table id="table">
+        <tr>
+          <th>Substance</th>
+          <th>Used in the past year</th>
+          <th>Last time use</th>
+          <th>How frequent?</th>
+          <th>Can you quit during pregnancy?</th>
+        </tr>
+        <tr>
+          <th>Alcohol</th>
+          <td>
+            <mat-select formControlName="alcohol_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="alcohol_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="alcohol_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="alcohol_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Nicotine</th>
+          <td>
+            <mat-select formControlName="Nicotine_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Nicotine_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Nicotine_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Nicotine_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Marijuana</th>
+          <td>
+            <mat-select formControlName="Marijuana_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Marijuana_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Marijuana_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Marijuana_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Anti-depression/Anxiety Medication</th>
+          <td>
+            <mat-select formControlName="Anxiety_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Anxiety_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Anxiety_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Anxiety_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Amphetamines</th>
+          <td>
+            <mat-select formControlName="Amphetamines_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Amphetamines_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Amphetamines_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Amphetamines_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Barbiturates</th>
+          <td>
+            <mat-select formControlName="Barbiturates_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Barbiturates_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Barbiturates_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Barbiturates_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Cocaine</th>
+          <td>
+            <mat-select formControlName="Cocaine_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Cocaine_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Cocaine_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Cocaine_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Hallucinogens</th>
+          <td>
+            <mat-select formControlName="Hallucinogens_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Hallucinogens_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Hallucinogens_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Hallucinogens_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Heroin</th>
+          <td>
+            <mat-select formControlName="Heroin_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Heroin_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Heroin_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Heroin_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>LSD</th>
+          <td>
+            <mat-select formControlName="LSD_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="LSD_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="LSD_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="LSD_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Narcotics</th>
+          <td>
+            <mat-select formControlName="Narcotics_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Narcotics_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Narcotics_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Narcotics_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Opiates</th>
+          <td>
+            <mat-select formControlName="Opiates_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="Opiates_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="Opiates_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Opiates_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>PCP</th>
+          <td>
+            <mat-select formControlName="PCP_used" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </td>
+          <td><input matInput formControlName="PCP_last" maxlength="500" required></td>
+          <td>
+            <mat-select formControlName="PCP_frequent" required>
+              <mat-option value="Frequently">Frequently</mat-option>
+              <mat-option value="Often">Often</mat-option>
+              <mat-option value="Not Often">Not Often</mat-option>
+              <mat-option value="Rare">Rare</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="PCP_quit" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="I am not sure/I do not know">I am not sure/I do not know</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <mat-label>Please write your explanation as needed: </mat-label><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Please write your explanation as needed</mat-label>
+        <textarea matInput formControlName="explain2" maxlength="5000"></textarea>
+      </mat-form-field>
+    </form>
+    <br>
+    <div style="text-align: center;" class="button-row">
+      <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+      <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+      <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Health Information</ng-template>
+      <table id="table">
+        <tr>
+          <th>Current Birth Control Method</th>
+          <th>Starting Time</th>
+          <th>Ending Time</th>
+          <th>Currently in Use</th>
+        </tr>
+      </table>
+      <div [formGroup]="birthForm">
+        <table id="tableThird" formGroupName="list_births">
+          <ng-container *ngIf="birthForm.controls.list_births!=null">
+            <div *ngFor="let list_birth of birthForm.controls.list_births.controls; let i=index" [formGroupName]="i">
+              <tr>
+                <td>
+                  <mat-select formControlName="birth_control" required>
+                    <mat-option value="Essure">Essure</mat-option>
+                    <mat-option value="IUD - Copper (Paraguard)">IUD - Copper (Paraguard)</mat-option>
+                    <mat-option value="IUD - Mirena, Skyla, or Liletta">IUD - Mirena, Skyla, or Liletta</mat-option>
+                    <mat-option value="Nexplanon">Nexplanon</mat-option>
+                    <mat-option value="Implanon">Implanon</mat-option>
+                    <mat-option value="Birth Control Pills">Birth Control Pills</mat-option>
+                    <mat-option value="Condoms">Condoms</mat-option>
+                    <mat-option value="Tubal Ligation">Tubal Ligation</mat-option>
+                    <mat-option value="Partner Vasectomy">Partner Vasectomy</mat-option>
+                    <mat-option value="Depo Shot">Depo Shot</mat-option>
+                    <mat-option value="Depo-Provera Shot">Depo-Provera Shot</mat-option>
+                    <mat-option value="Nexplanon or Arm Implant">Nexplanon or Arm Implant</mat-option>
+                    <mat-option value="Abstinence">Abstinence</mat-option>
+                    <mat-option value="Birth Control Patch">Birth Control Patch</mat-option>
+                    <mat-option value="NuvaRing">NuvaRing</mat-option>
+                    <mat-option value="Other, Please Specify">Other, Please Specify</mat-option>
+                  </mat-select>
+                </td>
+                <td><input matInput formControlName="starting" maxlength="500" required></td>
+                <td><input matInput formControlName="ending" maxlength="500" required></td>
+                <td>
+                  <mat-select formControlName="use" required>
+                    <mat-option value="Yes">Yes</mat-option>
+                    <mat-option value="No">No</mat-option>
+                  </mat-select>
+                </td>
+              </tr>
+            </div>
+          </ng-container>
+        </table>
+      </div>
+      <br>
+      <button mat-raised-button color="warn" (click)="addNewRow3()">Add More <mat-icon>add_box</mat-icon></button>
+      <br><br><br>
+      <table id="table">
+        <tr>
+          <th>Pap Smear</th>
+          <th>Date</th>
+          <th>Result</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <th>Latest</th>
+          <td><input matInput formControlName="latest_date" maxlength="500" required></td>
+          <td><input matInput formControlName="latest_result" maxlength="500" required></td>
+          <td><input matInput formControlName="latest_notes" maxlength="500" required></td>
+        </tr>
+        <tr>
+          <th>Second Latest</th>
+          <td><input matInput formControlName="latest2_date" maxlength="500" required></td>
+          <td><input matInput formControlName="latest2_result" maxlength="500" required></td>
+          <td><input matInput formControlName="latest2_notes" maxlength="500" required></td>
+        </tr>
+      </table>
+      <br><br>
+      <table id="table">
+        <tr>
+          <th>Any major GYN surgaries involving reproductive organs?</th>
+          <th>Please also share treatment result if apply</th>
+        </tr>
+        <tr>
+          <th>N/A</th>
+          <td>
+            <mat-select formControlName="N_A_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Ovarian Cystectomy</th>
+          <td>
+            <mat-select formControlName="Ovarian_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Fibroid Removal</th>
+          <td>
+            <mat-select formControlName="Fibroid_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Salpingectomy</th>
+          <td>
+            <mat-select formControlName="Salpingectomy_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Oophorectomy</th>
+          <td>
+            <mat-select formControlName="Oophorectomy_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Others, Please Specify</th>
+          <td>
+            <mat-select formControlName="Others_treatment" required>
+              <mat-option value="Cured/Completed">Cured/Completed</mat-option>
+              <mat-option value="In Progress">In Progress</mat-option>
+              <mat-option value="Others, Please Explain">Others, Please Explain</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <p>Are you or your partner/spouse currently diagnosed with the following:</p><br>
+      <table id="table">
+        <tr>
+          <th>Condition</th>
+          <th>You</th>
+          <th>Your Partner</th>
+          <th>Both</th>
+          <th>Neither</th>
+        </tr>
+        <tr>
+          <th>Genital Warts</th>
+          <td>
+            <mat-select formControlName="Genital_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Genital_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Genital_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Genital_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Hepatisis B</th>
+          <td>
+            <mat-select formControlName="B_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="B_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="B_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="B_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Hepatisis C</th>
+          <td>
+            <mat-select formControlName="C_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="C_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="C_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="C_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Herpes</th>
+          <td>
+            <mat-select formControlName="Herpes_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Herpes_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Herpes_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Herpes_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>HIV</th>
+          <td>
+            <mat-select formControlName="HIV_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HIV_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HIV_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HIV_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>HPV</th>
+          <td>
+            <mat-select formControlName="HPV_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HPV_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HPV_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="HPV_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Syphilis</th>
+          <td>
+            <mat-select formControlName="Syphilis_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Syphilis_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Syphilis_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Syphilis_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Trichomonas</th>
+          <td>
+            <mat-select formControlName="Trichomonas_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Trichomonas_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Trichomonas_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Trichomonas_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Chlamydia</th>
+          <td>
+            <mat-select formControlName="Chlamydia_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Chlamydia_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Chlamydia_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Chlamydia_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+        <tr>
+          <th>Gonorrhea</th>
+          <td>
+            <mat-select formControlName="Gonorrhea_you" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Gonorrhea_Partner" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Gonorrhea_both" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+          <td>
+            <mat-select formControlName="Gonorrhea_neither" required>
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+              <mat-option value="N/A">N/A</mat-option>
+            </mat-select>
+          </td>
+        </tr>
+      </table>
+      <br><br>
+      <mat-label>Please write your explanation as needed: </mat-label><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Please write your explanation as needed</mat-label>
+        <textarea matInput formControlName="explain3" maxlength="5000"></textarea>
+      </mat-form-field>
+    </form>
+    <br>
+    <div style="text-align: center;" class="button-row">
+      <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+      <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+      <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="forthFormGroup">
+    <form [formGroup]="forthFormGroup">
+      <ng-template matStepLabel>Household Members Disclosure</ng-template>
+      <p style="text-align: center;">During your surrogacy journey, who is your major support person? The support person would offer support such as taking care of you, driving you to hospital, <br> and taking care of children while you are not able to.</p><br>
+      <table id="table">
+        <tr>
+          <th>Current Household Structure</th>
+          <th>Relationship</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Occupation</th>
+          <th>Demeaner</th>
+          <th>Social Security Number for individual 18 years and older</th>
+          <th>Any felony convicted?</th>
+        </tr>
+        <tr>
+          <th>Yourself</th>
+          <td><input matInput formControlName="yourself_Relationship" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_Name" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_Age" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_Occupation" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_Demeaner" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_Social" maxlength="500" required></td>
+          <td><input matInput formControlName="yourself_felony" maxlength="500" required></td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td><input matInput formControlName="h1_Relationship" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_Name" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_Age" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_Occupation" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_Demeaner" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_Social" maxlength="500" required></td>
+          <td><input matInput formControlName="h1_felony" maxlength="500" required></td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td><input matInput formControlName="h2_Relationship" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_Name" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_Age" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_Occupation" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_Demeaner" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_Social" maxlength="500" required></td>
+          <td><input matInput formControlName="h2_felony" maxlength="500" required></td>
+        </tr>
+        <tr>
+          <th>3</th>
+          <td><input matInput formControlName="h3_Relationship" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_Name" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_Age" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_Occupation" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_Demeaner" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_Social" maxlength="500" required></td>
+          <td><input matInput formControlName="h3_felony" maxlength="500" required></td>
+        </tr>
+        <tr>
+          <th>4</th>
+          <td><input matInput formControlName="h4_Relationship" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_Name" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_Age" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_Occupation" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_Demeaner" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_Social" maxlength="500" required></td>
+          <td><input matInput formControlName="h4_felony" maxlength="500" required></td>
+        </tr>
+      </table>
+      <div [formGroup]="householdForm">
+      <table id="table" formGroupName="list_households">
+        <ng-container *ngIf="householdForm.controls.list_households!=null">
+        <div *ngFor="let list_household of householdForm.controls.list_households.controls; let i=index" [formGroupName]="i">
+          <tr>
+            <th><input matInput formControlName="AddHousehold" maxlength="500" placeholder="Add More" required></th>
+            <td><input matInput formControlName="Relationship" maxlength="500" required></td>
+            <td><input matInput formControlName="Name" maxlength="500" required></td>
+            <td><input matInput formControlName="Age" maxlength="500" required></td>
+            <td><input matInput formControlName="Occupation" maxlength="500" required></td>
+            <td><input matInput formControlName="Demeaner" maxlength="500" required></td>
+            <td><input matInput formControlName="Social" maxlength="500" required></td>
+            <td><input matInput formControlName="felony" maxlength="500" required></td>
+          </tr>
+        </div>
+        </ng-container>
+      </table>
+      </div>
+      <br>
+      <button mat-raised-button color="warn" (click)="addNewRow4()">Add More <mat-icon>add_box</mat-icon></button>
+      <br><br>
+      <mat-label>Please write your explanation as needed: </mat-label><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Please write your explanation as needed</mat-label>
+        <textarea matInput formControlName="explain4" maxlength="5000"></textarea>
+      </mat-form-field>
+    </form>
+    <div style="text-align: center;" class="button-row">
+      <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+      <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+      <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="fifthFormGroup">
+    <form [formGroup]="fifthFormGroup">
+      <ng-template matStepLabel>Self Explorer</ng-template>
+        <table id="table">
+          <tr>
+            <th>What has inspired you to help others to have a family via surrogacy?</th>
+            <td><input matInput formControlName="inspired" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>What do you want to say to intended parents?</th>
+            <td><input matInput formControlName="intended" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>Do you have a valid driver's license and/or reliable transportation?</th>
+            <td>
+              <mat-select formControlName="license" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>Are you able to attend required appointments and procedure?</th>
+            <td>
+              <mat-select formControlName="appointments" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>List all your residences within the last 5 years</th>
+            <td><input matInput formControlName="residences" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>Are you currently in a relationship?</th>
+            <td>
+              <mat-select formControlName="relationship" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>How long have you been in that relationship?</th>
+            <td><input matInput formControlName="long" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>What is your legal marital status? How long you have been married?</th>
+            <td><input matInput formControlName="marital" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>Do you currently have any major legal cases or claims pending?</th>
+            <td>
+              <mat-select formControlName="legal" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>Have you had any active restraining orders in the last year?</th>
+            <td>
+              <mat-select formControlName="restraining" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>Have you had any active filling for divorce or legal separation?</th>
+            <td>
+              <mat-select formControlName="filling" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+          <tr>
+            <th>What is your full legal name?</th>
+            <td><input matInput formControlName="name" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>Please list any other complete names you have used in the past, including maiden name. Enter N/A if you haven't used any other names.</th>
+            <td><input matInput formControlName="maiden" maxlength="500" required></td>
+          </tr>
+          <tr>
+            <th>Have your current partner/spouse ever been convicted of a felony?</th>
+            <td>
+              <mat-select formControlName="partner" required>
+                <mat-option value="Yes">Yes</mat-option>
+                <mat-option value="No">No</mat-option>
+              </mat-select>
+            </td>
+          </tr>
+        </table>
+        <br><br>
+        <mat-label>Please write your explanation as needed: </mat-label><br>
+        <mat-form-field appearance="outline">
+          <mat-label>Please write your explanation as needed</mat-label>
+          <textarea matInput formControlName="explain5" maxlength="5000"></textarea>
+        </mat-form-field>
+    </form>
+    <div style="text-align: center;" class="button-row">
+      <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+      <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+      <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="sixthFormGroup">
+    <form [formGroup]="sixthFormGroup">
+      <ng-template matStepLabel>Photos and Video</ng-template>
+        <ul>
+          <li>It is the last step!</li>
+          <li>We need your photos to better present you. You can upload photos taken with your support person.</li>
+          <li>We would love to present the best of you to intended parents.</li>
+          <li>The more the merrier! Our statistics suggests that more high-quality photos can increase the <b>matching success rate</b> significantly!</li>
+        </ul>
+        <div style="text-align: center;">
+          <img src="https://i.ibb.co/2ctDzgx/Upload-photos.png" width="250px" height="130px" (click)="photoUpload.click()">
+          <br>
+          <mat-label><font color=red><b>Please upload at least 5 photos to complete the application.</b></font></mat-label><br><br>
+          <input style="display: none;" type="file" accept="image/*" formControlName="imageUrl" #photoUpload (change)="selectPhotos($event)" multiple required>
+          <img *ngFor="let url of urls" [src]="url" height="200px" alt="">
+          <!-- <button mat-raised-button color="primary" type="button" (click)="UploadPhotos(fifthFormGroup.value)">Upload <mat-icon>upload</mat-icon></button> -->
+        </div>
+        <br>
+    </form>
+    <div style="text-align: center;" class="button-row">
+      <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+      <button mat-raised-button color="primary">SAVE <mat-icon>save</mat-icon></button>
+      <button mat-raised-button color="warn" matStepperNext>NEXT <mat-icon>arrow_forward_ios</mat-icon></button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="sevenFormGroup">
+    <form style="text-align: center;" [formGroup]="sevenFormGroup">
+      <ng-template matStepLabel>Done</ng-template><br>
+      <mat-card>
+        <mat-label>I agree and verify all the questions are answered honestly and best to my knowledge. I agree that typing my name is legally binding and equivalent to my handwritten signature. </mat-label><br>
+        <br>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="agree" maxlength="500" required>
+          <mat-error *ngIf="sevenFormGroup.controls['agree'].errors?.required">This field is required.</mat-error>
+        </mat-form-field>
+        <br>
+        <div>
+          <mat-checkbox formControlName="check" [(ngModel)]="checked" required><b>I Agree </b></mat-checkbox><font color=red>*</font>
+        </div>
+      </mat-card>
+      <br>
+      <div class="button-row">
+        <button mat-raised-button color="warn" matStepperPrevious><mat-icon>arrow_back_ios</mat-icon> BACK</button>
+        <button mat-raised-button color="warn" [disabled]="(!checked)">SUBMIT <mat-icon>task_alt</mat-icon></button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

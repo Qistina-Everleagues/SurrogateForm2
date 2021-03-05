@@ -1,0 +1,116 @@
+/* table */
+
+#table {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    border-collapse: collapse;
+    width: 1400px;
+    table-layout: fixed;
+    text-align: center;
+}
+  
+#table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#table tr:nth-child(even){background-color: #f2f2f2;}
+  
+#table tr:hover {background-color: #ddd;}
+  
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tableFirst {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+  
+#tableFirst td, #tableFirst th {
+    width: 110px;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#tableFirst tr:nth-child(even){background-color: #f2f2f2;}
+  
+#tableFirst tr:hover {background-color: #ddd;}
+  
+#tableFirst th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tableThird {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+  
+#tableThird td, #tableThird th {
+    width: 332.5px;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#tableThird tr:nth-child(even){background-color: #f2f2f2;}
+  
+#tableThird tr:hover {background-color: #ddd;}
+  
+#tableThird th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* form */
+
+.add-margin-left {
+    font-size: 16px;
+    width: 700px;
+    margin-left: 20px;
+}
+
+.mat-form-field.mat-form-field {
+    font-size: 16px;
+    width: 700px;
+}
+
+/* Stepper */
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+/* Progress bar */
+
+.progress-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+.progress {
+    width: 500px;
+    height: 20px;
+    margin: 0px 10px;
+    text-align: center;
+}
+
+.card {
+    width: 550px;
+    margin-left: 480px;
+}
